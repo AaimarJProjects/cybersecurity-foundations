@@ -63,3 +63,41 @@ Creates a new directory.
 ### su
 Switches user accounts to test access.
 - Example: `su alice`
+
+## Services in Linux
+
+### What services do
+Services are background programs that run automatically.
+They handle system tasks such as:
+- Scheduling jobs (cron)
+- Logging (rsyslog)
+- Networking
+- Time synchronization
+
+They usually start at boot and run without user interaction.
+
+### Identifying running services
+I used:
+systemctl list-units --type=service --state=running
+
+This showed all active services on the system.
+
+### Stopping and restarting a service
+I worked with the cron service.
+
+To stop it:
+sudo systemctl stop cron
+
+While cron was stopped, scheduled jobs did not run.
+
+To restart it:
+sudo systemctl start cron
+
+After restarting, scheduled tasks worked again.
+
+### Why attackers care about services
+Attackers care about services because:
+- Services often run with high privileges
+- Vulnerable services can give attackers persistence
+- Attackers can disable services to hide activity
+- Misconfigured services can be exploited for privilege escalation
